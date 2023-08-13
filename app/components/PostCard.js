@@ -2,18 +2,19 @@
 
 import Card from "./Card"
 import Avatar from "./Avatar"
-// import ClickOutHandler from "react-clickout-handler"
+import ClickOutHandler from "react-clickout-handler"
 import { useState } from "react"
+import Link from "next/link"
 
 export default function PostCard() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   function openDropdown(e) {
-    e.stopPropogation();
+    e.stopPropagation();
     setDropdownOpen(true);
   }
 
   function handleClickOutsideDropdown(e) {
-    e.stopPropogation();
+    e.stopPropagation();
     setDropdownOpen(false);
   }
 
@@ -21,17 +22,23 @@ export default function PostCard() {
         <Card>
           <div className="flex gap-3">
             <div>
-              <Avatar />
+              <Link href={'/Profile'}>
+               <span className="cursor-pointer">
+                 <Avatar />
+               </span>
+               </Link>
             </div>
             <div className="grow">
               <p>
-                <a className="text-semibold">Mariam </a> 
+                <Link href={'/Profile'}>
+                 <span className="text-semibold hover:underline cursor-pointer">Mariam </span> 
+                </Link> 
                 shared a 
                 <a className="text-socialBlue"> album</a>
               </p>
               <p className="text-gray-500 text-sm">2 hours ago</p>
             </div>
-            <div>
+            <div className="relative">
                  <button className="text-gray-400" onClick={openDropdown}>
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
@@ -40,39 +47,40 @@ export default function PostCard() {
               {dropdownOpen && (
                 <div className="bg-red w-5 h-5 absolute top-0"></div>
               )}
-              {/* <ClickOutHandler onClick={handleClickOutsideDropdown}>
-              <div classname="relative">
-                {dropdownOpen && (
-                    <div className="absolute top-0 -right-6 bg-white shadow-md shadow-gray-300 p-3 rounded-sm border border-gray-100 w-52">
-                     <a href="" className="flex py-2 px-2 gap-2">
+              
+              <ClickOutHandler onClick={handleClickOutsideDropdown}>
+                  <div className="relative">
+                      {dropdownOpen && (
+                        <div className="absolute top-0 -right-6 bg-white shadow-md shadow-gray-300 p-3 rounded-sm border border-gray-100 w-52">
+                          <a href="" className="flex gap-3 py-2 my-3 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                      </svg>
                      Save Post</a>
-                     <a href="" className="flex py-2 px-2 gap-2">
+                     <a href="" className="flex gap-3 py-2 my-3 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                      </svg>
                      Turn Notifictaion</a>
-                     <a href="" className="flex py-2 px-2 gap-2">
+                     <a href="" className="flex gap-3 py-2 my-3 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                      </svg>
                      Hide Post</a>
-                     <a href="" className="flex py-2 px-2 gap-2">
+                     <a href="" className="flex gap-3 py-2 my-3 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                      </svg>
                      Delete</a>
-                     <a href="" className="flex py-2 px-2 gap-2">
+                     <a href="" className="flex gap-3 py-2 my-3 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
                      </svg>
                      Report</a>
-                </div>
-                 )}
-              </div>
-              </ClickOutHandler>   */}
+                        </div>
+                      )}
+                  </div>
+              </ClickOutHandler>
             </div>
           </div>
 
