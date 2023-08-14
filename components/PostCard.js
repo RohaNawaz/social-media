@@ -19,7 +19,7 @@ export default function PostCard() {
   }
 
     return (
-        <Card>
+        <Card >
           <div className="flex gap-3">
             <div>
               <Link href={'/Profile'}>
