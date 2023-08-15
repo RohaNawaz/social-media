@@ -3,7 +3,6 @@
 import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
 import Layout from "@/components/Layout";
-import PostCard from "@/components/PostCard";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -43,7 +42,7 @@ export default function page() {
                   Posts
                   </Link>
 
-                  <Link href={'/abouts'} className={isAbout ? activeTabClasses : tabClasses}>
+                  <Link href={'/about'} className={isAbout ? activeTabClasses : tabClasses}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                   </svg>
@@ -69,8 +68,24 @@ export default function page() {
             </div>
             </Card>
 
-            <PostCard />
-        </Layout>
+            <div>
+                <Card>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://images.unsplash.com/photo-1598395927056-8d895e701c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JlZWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80" alt=""></img>
+                    </div>
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGdyZWVjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt=""></img>
+                    </div>
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://media.istockphoto.com/id/1442378909/photo/white-staircases-and-mediterranean-sea-view-natural-view-scene-background-tourist-residence.webp?b=1&s=170667a&w=0&k=20&c=mTJojkML5D16o4mz8iZd7TFm-CzrOwzdxB4Wq9IM8PM=" alt=""></img>
+                    </div>
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGdyZWVjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt=""></img>
+                    </div>
+                  </div>
+                </Card>
+            </div>
+          </Layout>
     )
-}
-
+}     
