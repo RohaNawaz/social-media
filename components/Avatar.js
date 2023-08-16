@@ -1,7 +1,7 @@
 export default function Avatar({size}) {
     let width = 'w-16'
     if (size === 'lg') {
-      width = 'w-36';
+      width = 'w-24 md:w-36';
     }
 
     return (

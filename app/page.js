@@ -8,6 +8,8 @@ export default function Home() {
     <Layout>
       <PostFormCard />
         <PostCard />
+
+        
     </Layout>
   )
 }
