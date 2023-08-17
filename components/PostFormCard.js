@@ -21,6 +21,14 @@ export default function PostFormCard() {
     })
     }, []);
 
+    function createPost() {
+        supabase.from('posts').insert({
+            author: session.user.id,
+            content
+        }).then(response => {
+            console.log(response);
+        })
+    }
     
     return(
         <Card >
@@ -62,7 +70,7 @@ export default function PostFormCard() {
                     </button>
                 </div>
                 <div className="grow text-right">
-                    <button className="bg-socialBlue text-white px-6 py-2 rounded-xl">
+                    <button onClick={createPost} className="bg-socialBlue text-white px-6 py-2 rounded-xl">
                         Share
                     </button>
                 </div>
