@@ -3,11 +3,15 @@
 import Card from "./Card"
 import Avatar from "./Avatar"
 import ClickOutHandler from "react-clickout-handler"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Link from "next/link"
+import ReactTimeAgo from "react-time-ago"
+import { UserContext } from "@/contexts/UserContext"
 
-export default function PostCard() {
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+export default function PostCard({content,created_at,photos, profiles:authorProfile}) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const {profile:myProfile} = useContext(UserContext);
+
   function openDropdown(e) {
     e.stopPropagation();
     setDropdownOpen(true);
@@ -24,19 +28,20 @@ export default function PostCard() {
             <div>
               <Link href={'/Profile'}>
                <span className="cursor-pointer">
-                 <Avatar />
+               <Avatar url={authorProfile?.avatar}/>
                </span>
                </Link>
             </div>
             <div className="grow">
               <p>
                 <Link href={'/Profile'}>
-                 <span className="text-semibold hover:underline cursor-pointer">Mariam </span> 
+                 <span className="text-semibold hover:underline cursor-pointer"> {authorProfile?.name} </span> 
                 </Link> 
-                shared a 
-                <a className="text-socialBlue"> album</a>
+                shared a post
               </p>
-              <p className="text-gray-500 text-sm">2 hours ago</p>
+              <p className="text-gray-500 text-sm">
+                <ReactTimeAgo date={created_at} />
+              </p>
             </div>
             <div className="relative">
                  <button className="text-gray-400" onClick={openDropdown}>
@@ -85,10 +90,19 @@ export default function PostCard() {
           </div>
 
           <div>
-            <p className="my-3 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor <br />incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis<br /> nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div className="rounded-md overflow-hidden">
+            <p className="my-3 text-sm">{content}</p>
+            {photos?.length > 0 && (
+          <div className="flex gap-4">
+            {photos.map(photo => (
+              <div key={photo} className="">
+                <img src={photo} className="rounded-md" alt=""/>
+              </div>
+            ))}
+          </div>
+        )}
+            {/* <div className="rounded-md overflow-hidden">
             <img src="https://media.istockphoto.com/id/1458297519/photo/old-white-church.webp?b=1&s=170667a&w=0&k=20&c=T20djB7eYkRXiej4PZn-1wEmYGzfwBkvhSpUSZPZxck=" alt=""></img>
-            </div>
+            </div> */}
           </div>
 
           <div className="mt-5 flex gap-8">
@@ -114,7 +128,7 @@ export default function PostCard() {
 
           <div className="flex mt-4 gap-3">
             <div>
-              <Avatar />
+              <Avatar url={myProfile?.avatar}/>
             </div>
             <div className="border grow rounded-full relative">
             <textarea className="w-full block p-2 px-4 h-12 rounded-full overflow-hidden" placeholder="Leave a comment here!"/>
