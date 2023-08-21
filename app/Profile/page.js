@@ -1,13 +1,15 @@
 'use client'
 
+export const dynamic = 'force-dynamic';
 import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
 import Layout from "@/components/Layout";
 import PostCard from "@/components/PostCard";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
-export default function page() {
+export default function ProfilePage() {
   const pathname = usePathname();
   const isPosts = pathname.includes('posts') || pathname === '/Profile';
   const isAbout = pathname.includes('about');
