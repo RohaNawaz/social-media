@@ -6,7 +6,7 @@
 // import PostCard from "@/components/PostCard";
 // import Link from "next/link";
 // import { usePathname } from "next/navigation";
-import ProfilePage from "../Profile/page";
+import ProfilePage from "../profile/page";
 
 export default function page() {
   // const pathname = usePathname();
