@@ -8,7 +8,7 @@ import ReactTimeAgo from "react-time-ago";
 import {UserContext} from "../contexts/UserContext";
 import {useSupabaseClient} from "@supabase/auth-helpers-react";
 
-export default function PostCard({id,content,created_at,photos,profiles:authorProfile}) {
+export default function PostCard({id,content,created_at,photos,profiles:authorprofile}) {
   const [likes,setLikes] = useState([]);
   const [comments,setComments] = useState([]);
   const [commentText,setCommentText] = useState('');
@@ -73,15 +73,15 @@ export default function PostCard({id,content,created_at,photos,profiles:authorPr
         <div>
           <Link href={'/profile'}>
             <span className="cursor-pointer">
-              <Avatar url={authorProfile.avatar} />
+              <Avatar url={authorprofile.avatar} />
             </span>
           </Link>
         </div>
         <div className="grow">
           <p>
-            <Link href={'/profile/'+authorProfile.id}>
+            <Link href={'/profile/' +authorprofile.id}>
               <span className="mr-1 font-semibold cursor-pointer hover:underline">
-                {authorProfile.name}
+                {authorprofile.name}
               </span>
             </Link>
             shared a post

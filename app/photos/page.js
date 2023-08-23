@@ -1,23 +1,43 @@
 'use client'
 
-import Avatar from "@/components/Avatar";
+// import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
 import Layout from "@/components/Layout";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+import ProfilePage from "../profile/page";
 
 export default function page() {
-  const pathname = usePathname();
-  const isPosts = pathname.includes('posts') || pathname === '/Profile';
-  const isAbout = pathname.includes('about');
-  const isFriends = pathname.includes('friends');
-  const isPhotos = pathname.includes('photos');
-  const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
-  const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
+  // const pathname = usePathname();
+  // const isPosts = pathname.includes('posts') || pathname === '/Profile';
+  // const isAbout = pathname.includes('about');
+  // const isFriends = pathname.includes('friends');
+  // const isPhotos = pathname.includes('photos');
+  // const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
+  // const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
 
     return (
         <Layout>
-            <Card noPadding={true}> 
+          <ProfilePage />
+          <div>
+                <Card>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://images.unsplash.com/photo-1598395927056-8d895e701c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JlZWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80" alt=""></img>
+                    </div>
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGdyZWVjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt=""></img>
+                    </div>
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://media.istockphoto.com/id/1442378909/photo/white-staircases-and-mediterranean-sea-view-natural-view-scene-background-tourist-residence.webp?b=1&s=170667a&w=0&k=20&c=mTJojkML5D16o4mz8iZd7TFm-CzrOwzdxB4Wq9IM8PM=" alt=""></img>
+                    </div>
+                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+                     <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGdyZWVjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt=""></img>
+                    </div>
+                  </div>
+                </Card>
+            </div>
+            {/* <Card noPadding={true}> 
             <div className="relative overflow-hidden rounded-md ">
               <div className="h-32 overflow-hidden flex justify-center items-center w-auto">
                 <img src="https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k=" alt=""></img>
@@ -66,26 +86,7 @@ export default function page() {
               </div>
 
             </div>
-            </Card>
-
-            <div>
-                <Card>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
-                     <img src="https://images.unsplash.com/photo-1598395927056-8d895e701c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JlZWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80" alt=""></img>
-                    </div>
-                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
-                     <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGdyZWVjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt=""></img>
-                    </div>
-                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
-                     <img src="https://media.istockphoto.com/id/1442378909/photo/white-staircases-and-mediterranean-sea-view-natural-view-scene-background-tourist-residence.webp?b=1&s=170667a&w=0&k=20&c=mTJojkML5D16o4mz8iZd7TFm-CzrOwzdxB4Wq9IM8PM=" alt=""></img>
-                    </div>
-                    <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
-                     <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGdyZWVjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt=""></img>
-                    </div>
-                  </div>
-                </Card>
-            </div>
+            </Card> */}
           </Layout>
     )
 }     

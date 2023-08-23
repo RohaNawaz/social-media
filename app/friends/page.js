@@ -1,24 +1,48 @@
 'use client'
 
-import Avatar from "@/components/Avatar";
+// import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
 import FriendsInfo from "@/components/FriendsInfo";
 import Layout from "@/components/Layout";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+import ProfilePage from "../profile/page";
 
 export default function page() {
-  const pathname = usePathname();
-  const isPosts = pathname.includes('posts') || pathname === '/Profile';
-  const isAbout = pathname.includes('about');
-  const isFriends = pathname.includes('friends');
-  const isPhotos = pathname.includes('photos');
-  const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
-  const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
+  // const pathname = usePathname();
+  // const isPosts = pathname.includes('posts') || pathname === '/Profile';
+  // const isAbout = pathname.includes('about');
+  // const isFriends = pathname.includes('friends');
+  // const isPhotos = pathname.includes('photos');
+  // const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
+  // const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
 
     return (
         <Layout>
-            <Card noPadding={true}> 
+          <ProfilePage /> 
+           <Card>
+              <h2 className="text-3xl mb-2">Friends</h2>
+
+              <div className="">
+                <div className="border-b border-b-gray-100 p-4 -mx-4">
+                 <FriendsInfo />
+                </div>
+                <div className="border-b border-b-gray-100 p-4 -mx-4">
+                 <FriendsInfo />
+                </div>
+                <div className="border-b border-b-gray-100 p-4 -mx-4">
+                 <FriendsInfo />
+                </div>
+                <div className="border-b border-b-gray-100 p-4 -mx-4">
+                 <FriendsInfo />
+                </div>
+                <div className="border-b border-b-gray-100 p-4 -mx-4">
+                 <FriendsInfo />
+                </div>
+              </div>
+
+            </Card>
+            {/* <Card noPadding={true}> 
             <div className="relative overflow-hidden rounded-md ">
               <div className="h-32 overflow-hidden flex justify-center items-center w-auto">
                 <img src="https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k=" alt=""></img>
@@ -67,30 +91,7 @@ export default function page() {
               </div>
 
             </div>
-            </Card>
-
-            <Card>
-              <h2 className="text-3xl mb-2">Friends</h2>
-
-              <div className="">
-                <div className="border-b border-b-gray-100 p-4 -mx-4">
-                 <FriendsInfo />
-                </div>
-                <div className="border-b border-b-gray-100 p-4 -mx-4">
-                 <FriendsInfo />
-                </div>
-                <div className="border-b border-b-gray-100 p-4 -mx-4">
-                 <FriendsInfo />
-                </div>
-                <div className="border-b border-b-gray-100 p-4 -mx-4">
-                 <FriendsInfo />
-                </div>
-                <div className="border-b border-b-gray-100 p-4 -mx-4">
-                 <FriendsInfo />
-                </div>
-              </div>
-
-            </Card>
+            </Card> */}
         </Layout>
     )
 }  

@@ -3,39 +3,71 @@
 export const dynamic = 'force-dynamic';
 import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
+import Cover from "@/components/Cover";
 import Layout from "@/components/Layout";
 import PostCard from "@/components/PostCard";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function ProfilePage() {
+  const router = useRouter();
+  const userId = router.query.id;
+  const [profile, setProfile] = useState(null);
+  const supabase = useSupabaseClient();
+  const session = useSession();
+
+  useEffect(() => {
+      if(!userId) {
+        return;
+      }
+      fetchUser(); 
+  }, [userId]);
+
+  function fetchUser() {
+    supabase.from('profiles')
+     .select()
+     .eq('id', userId)
+     .then(result => {
+       if(result.error) {
+        throw result.error;
+       }
+       if(result.data) {
+        setProfile(result.data[0]);
+       }
+      });
+  }
+
   const pathname = usePathname();
-  const isPosts = pathname.includes('posts') || pathname === '/Profile';
+  const isPosts = pathname.includes('posts') || pathname === '/profile';
   const isAbout = pathname.includes('about');
   const isFriends = pathname.includes('friends');
   const isPhotos = pathname.includes('photo');
   const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
   const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
 
+  const isMyUser = userId === session?.user?.id;
+
     return (
         <Layout>
             <Card noPadding={true}> 
             <div className="relative overflow-hidden rounded-md ">
-              <div className="h-32 overflow-hidden flex justify-center items-center w-auto">
-                <img src="https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k=" alt=""></img>
-              </div>
+              <Cover url={profile?.cover} editable={isMyUser} onChange={fetchUser} />
 
-              <div className="absolute top-14 left-4">
-                <Avatar size={'lg'}/>
+              <div className="absolute top-14 left-4 z-20">
+                {profile && (
+                  <Avatar url={profile?.avatar} size={'lg'} editable={isMyUser} onChange={fetchUser}/>
+                )}
               </div>
 
               <div className="p-4 pb-0">
                 <div className="ml-40">
                   <h1 className="text-3xl font-bold">
-                   Mariam
+                   {profile?.name}
                   </h1>
-                  <div>Bahawalpur, Pakistan</div>
+                  <div>{profile?.places}</div>
                 </div>
                 <div className="mt-10 flex gap-0">
                   <Link href={'/posts'} className={isPosts ? activeTabClasses : tabClasses}>
