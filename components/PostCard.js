@@ -79,7 +79,7 @@ export default function PostCard({id,content,created_at,photos,profiles:authorpr
         </div>
         <div className="grow">
           <p>
-            <Link href={'/profile/' +authorprofile.id}>
+            <Link href={'/profile1/' +authorprofile.id}>
               <span className="mr-1 font-semibold cursor-pointer hover:underline">
                 {authorprofile.name}
               </span>

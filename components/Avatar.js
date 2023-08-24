@@ -1,4 +1,4 @@
-import {uploadUserProfileImage} from "../helpers/user";
+import {uploadUserProfileImage} from "../helpers/users";
 import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useState} from "react";
 import PreLoader from "./PreLoader";
