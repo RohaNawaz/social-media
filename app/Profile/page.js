@@ -17,9 +17,19 @@ export default function ProfilePage() {
   const userId = router.query.id;
   const [profile, setProfile] = useState(null);
   const [editMode, setEditMode] = useState(null);
+  const [name, setName] = useState('');
+  const [place, setPlace] = useState('');
   console.log(profile);
   const supabase = useSupabaseClient();
   const session = useSession();
+
+  const pathname = usePathname();
+  const isPosts = pathname.includes('posts') || pathname === '/profile';
+  const isAbout = pathname.includes('about');
+  const isFriends = pathname.includes('friends');
+  const isPhotos = pathname.includes('photo');
+  const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
+  const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
 
   useEffect(() => {
       if(!userId) {
@@ -42,13 +52,20 @@ export default function ProfilePage() {
       });
   }
 
-  const pathname = usePathname();
-  const isPosts = pathname.includes('posts') || pathname === '/profile';
-  const isAbout = pathname.includes('about');
-  const isFriends = pathname.includes('friends');
-  const isPhotos = pathname.includes('photo');
-  const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
-  const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
+  function saveProfile() {
+    supabase.from('profiles')
+      .update({
+        name,
+        place,
+      })
+      .eq('id', session?.user?.id)
+      .then(result => {
+        if (!result.error) {
+          setProfile(prev => ({...prev,name,place}));
+        }
+        setEditMode(false);
+      });
+  }
 
   const isMyUser = userId === session?.user?.id;
 
@@ -96,12 +113,14 @@ export default function ProfilePage() {
                     </div>
                   )}
                   </div>
-                  {isMyUser && !editMode && (
+                  <div className="grow">
+                    <div className="text-right">
+                    {isMyUser && !editMode && (
                     <div>
                       <button onClick={() => {
                           setEditMode(true);
-                          setName(profile.name);
-                          setPlace(profile.place);
+                          setName(profile?.name);
+                          setPlace(profile?.place);
                         }} 
                         className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -116,7 +135,16 @@ export default function ProfilePage() {
                         Save profile
                       </button>
                     )}
+                    {isMyUser && editMode && (
+                      <button onClick={() => setEditMode(false)} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
+                        Cancel
+                      </button>
+                    )}
+                    </div>
+                  </div>
                 </div>
+
+
                 <div className="mt-10 flex gap-0">
                   <Link href={'/posts'} className={isPosts ? activeTabClasses : tabClasses}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
