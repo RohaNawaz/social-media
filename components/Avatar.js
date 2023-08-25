@@ -1,3 +1,5 @@
+'use client';
+
 import {uploadUserProfileImage} from "../helpers/users";
 import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useState} from "react";

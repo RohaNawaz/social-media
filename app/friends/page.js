@@ -1,25 +1,12 @@
 'use client'
 
-// import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
 import FriendsInfo from "@/components/FriendsInfo";
 import Layout from "@/components/Layout";
-// import Link from "next/link";
-// import { usePathname } from "next/navigation";
-import ProfilePage from "../profile1/page";
 
-export default function page() {
-  // const pathname = usePathname();
-  // const isPosts = pathname.includes('posts') || pathname === '/Profile';
-  // const isAbout = pathname.includes('about');
-  // const isFriends = pathname.includes('friends');
-  // const isPhotos = pathname.includes('photos');
-  // const activeTabClasses = 'flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold';
-  // const tabClasses = 'flex gap-1 px-4 py-1 items-center border-b-4 border-b-white';
-
+export default function Friendpage() {
     return (
         <Layout>
-          <ProfilePage /> 
            <Card>
               <h2 className="text-3xl mb-2">Friends</h2>
 

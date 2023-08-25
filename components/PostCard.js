@@ -73,15 +73,15 @@ export default function PostCard({id,content,created_at,photos,profiles:authorpr
         <div>
           <Link href={'/profile'}>
             <span className="cursor-pointer">
-              <Avatar url={authorprofile.avatar} />
+              <Avatar url={authorprofile?.avatar} />
             </span>
           </Link>
         </div>
         <div className="grow">
           <p>
-            <Link href={'/profile1/' +authorprofile.id}>
+            <Link href={'/profile1/' + authorprofile?.id}>
               <span className="mr-1 font-semibold cursor-pointer hover:underline">
-                {authorprofile.name}
+                {authorprofile?.name}
               </span>
             </Link>
             shared a post
