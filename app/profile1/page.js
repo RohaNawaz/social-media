@@ -178,11 +178,12 @@ function saveProfile() {
       <Card noPadding={true}>
         
       <div className="relative overflow-hidden rounded-md">
-        
-      <Cover url={profile?.cover || 'https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k='} editable={isMyUser} onChange={fetchUser} />
-            <div className="absolute top-24 left-4 z-20">
+        <div className="h-32 overflow-hidden flex justify-center items-center w-auto p-0">
+        <Cover url={profile?.cover || 'https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k='} editable={isMyUser} onChange={fetchUser} />
+        </div>
+            <div className="absolute top-16 left-4 z-20">
               {/* {profile && ( */}
-                <Avatar url={profile?.avatar} size={'lg'} editable={isMyUser} onChange={fetchUser} />
+                <Avatar url={profile?.avatar || 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg'} size={'lg'} editable={isMyUser} onChange={fetchUser} />
               {/* )} */}
             </div>
 
