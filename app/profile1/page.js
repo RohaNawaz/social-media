@@ -1,15 +1,128 @@
+// 'use client';
+
+// import Layout from "@/components/Layout";
+// import Card from "@/components/Card";
+// import Avatar from "@/components/Avatar";
+// // import Link from "next/link";
+// import PostCard from "@/components/PostCard";
+// import {useRouter} from "next/navigation";
+// import {useEffect, useState} from "react";
+// import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
+// import Cover from "@/components/Cover";
+// // import {UserContext} from "@/contexts/UserContext";
+
+// export default function ProfilePage() {
+//   const [profile,setProfile] = useState(null);
+//   const [editMode,setEditMode] = useState(false);
+//   const [name,setName] = useState('');
+//   const [place,setPlace] = useState('');
+//   const router = useRouter();
+//   const session = useSession();
+//   const userId = router?.query?.id;
+
+//   const supabase = useSupabaseClient();
+
+//   useEffect(() => {
+//     if (!userId) {
+//       return;
+//     }
+//     fetchUser();
+//   }, [userId]);
+
+//   function fetchUser() {
+//     supabase.from('profiles')
+//       .select()
+//       .eq('id', userId)
+//       .then(result => {
+//         if (result.error) {
+//           throw result.error;
+//         }
+//         if (result.data) {
+//           setProfile(result.data[0]);
+//         }
+//       });
+//   }
+
+  
+
+
+//   const isMyUser = userId === session?.user?.id;
+
+//   return (
+//     <Layout>
+//         <Card noPadding={true}>
+//           <div className="relative overflow-hidden rounded-md">
+//             <Cover 
+//             url={profile?.cover} 
+//             editable={isMyUser} 
+//             onChange={fetchUser}
+//              />
+
+//             <div className="absolute top-24 left-4 z-20">
+//               {profile && (
+//                 <Avatar 
+//                 url={profile?.avatar} 
+//                 size={'lg'} 
+//                 editable={isMyUser} 
+//                 onChange={fetchUser} 
+//                 />
+//               )}
+//             </div>
+
+//             <div className="p-4 pt-0 md:pt-4 pb-0">
+//               <div className="ml-24 md:ml-40 flex justify-between">
+//                 <div>
+//                  {editMode && (
+//                     <div>
+//                       <input type="text"
+//                              className="border py-2 px-3 rounded-md"
+//                              placeholder={'Your name'}
+//                              onChange={ev => setName(ev.target.value)}
+//                              value={name}/>
+//                     </div>
+//                   )}
+                  
+//                     {!editMode && (
+//                     <h1 className="text-3xl font-bold">
+//                       {profile?.name}
+//                     </h1>
+//                   )}
+                  
+                  
+//                     {!editMode && (
+//                     <div className="text-gray-500 leading-4">
+//                       {profile?.place || 'Internet'}
+//                     </div>
+//                   )}
+                  
+//                   {editMode && (
+//                     <div>
+//                       <input type="text"
+//                              className="border py-2 px-3 rounded-md mt-1"
+//                              placeholder={'Your location'}
+//                              onChange={ev => setPlace(ev.target.value)}
+//                              value={place}/>
+//                     </div>
+//                   )}
+//                 </div>
+                
+//               </div>
+//             </div>
+//           </div>
+//         </Card>
+//     </Layout>
+//   );
+// }
+
 'use client';
 
 import Layout from "@/components/Layout";
 import Card from "@/components/Card";
 import Avatar from "@/components/Avatar";
-// import Link from "next/link";
-import PostCard from "@/components/PostCard";
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
 import Cover from "@/components/Cover";
-// import {UserContext} from "@/contexts/UserContext";
 
 export default function ProfilePage() {
   const [profile,setProfile] = useState(null);
@@ -31,19 +144,19 @@ export default function ProfilePage() {
 
   function fetchUser() {
     supabase.from('profiles')
-      .select()
-      .eq('id', userId)
-      .then(result => {
-        if (result.error) {
-          throw result.error;
-        }
-        if (result.data) {
-          setProfile(result.data[0]);
-        }
-      });
+    .select()
+    .eq('id', userId)
+    .then(result => {
+      if(result.error) {
+        throw result.error;
+      }
+      if(result.data) {
+        setProfile(result.data[0]);
+      }
+    })
   }
-
-  function saveProfile() {
+  
+function saveProfile() {
     supabase.from('profiles')
       .update({
         name,
@@ -58,23 +171,25 @@ export default function ProfilePage() {
       });
   }
 
-
   const isMyUser = userId === session?.user?.id;
 
   return (
     <Layout>
-      {/* <UserContext> */}
-        <Card noPadding={true}>
-          <div className="relative overflow-hidden rounded-md">
-            <Cover url={profile?.cover} editable={isMyUser} onChange={fetchUser} />
+      <Card noPadding={true}>
+        
+      <div className="relative overflow-hidden rounded-md">
+        
+      <Cover url={profile?.cover || 'https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k='} editable={isMyUser} onChange={fetchUser} />
             <div className="absolute top-24 left-4 z-20">
-              {profile && (
+              {/* {profile && ( */}
                 <Avatar url={profile?.avatar} size={'lg'} editable={isMyUser} onChange={fetchUser} />
-              )}
+              {/* )} */}
             </div>
-            <div className="p-4 pt-0 md:pt-4 pb-0">
-              <div className="ml-24 md:ml-40 flex justify-between">
-                <div>
+
+        <div className="p-4 pt-2 md::pt-4 pb-5">
+          <div className="ml-24 md:ml-40 flex justify-between">
+
+          <div>
                   {editMode && (
                     <div>
                       <input type="text"
@@ -86,12 +201,12 @@ export default function ProfilePage() {
                   )}
                   {!editMode && (
                     <h1 className="text-3xl font-bold">
-                      {profile?.name}
+                      {profile?.name || 'No Name'}
                     </h1>
                   )}
                   {!editMode && (
                     <div className="text-gray-500 leading-4">
-                      {profile?.place || 'Internet'}
+                      {profile?.place || 'No Place'}
                     </div>
                   )}
                   {editMode && (
@@ -104,8 +219,9 @@ export default function ProfilePage() {
                     </div>
                   )}
                 </div>
-                <div className="grow">
-                  <div className="text-right">
+
+<div className="grow">
+                  <div className="text-right gap-2 ">
                     {isMyUser && !editMode && (
                       <button
                         onClick={() => {
@@ -124,7 +240,7 @@ export default function ProfilePage() {
                       <button onClick={saveProfile} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         Save profile
                       </button>
-                    )}
+                     )}
                     {isMyUser && editMode && (
                       <button onClick={() => setEditMode(false)} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         Cancel
@@ -132,12 +248,10 @@ export default function ProfilePage() {
                     )}
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-      {/* </UserContext> */}
-      <PostCard />
+        </div>
+      </div>
+      </div>
+      </Card>
     </Layout>
-  );
+  )
 }
