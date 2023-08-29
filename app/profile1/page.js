@@ -128,7 +128,7 @@ export default function ProfilePage() {
   const [profile,setProfile] = useState(null);
   const [editMode,setEditMode] = useState(false);
   const [name,setName] = useState('');
-  const [place,setPlace] = useState('');
+  const [places,setPlaces] = useState('');
   const router = useRouter();
   const session = useSession();
   const userId = router?.query?.id;
@@ -160,15 +160,17 @@ function saveProfile() {
     supabase.from('profiles')
       .update({
         name,
-        place,
+        places,
       })
       .eq('id', session?.user?.id)
-      .then(result => {
+      .then(
+        result => {
         if (!result.error) {
-          setProfile(prev => ({...prev,name,place}));
+          setProfile(prev => ({...prev,name,places}));
         }
         setEditMode(false);
-      });
+      }
+      );
   }
 
   const isMyUser = userId === session?.user?.id;
@@ -178,9 +180,7 @@ function saveProfile() {
       <Card noPadding={true}>
         
       <div className="relative overflow-hidden rounded-md">
-        <div className="h-32 overflow-hidden flex justify-center items-center w-auto p-0">
         <Cover url={profile?.cover || 'https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k='} editable={isMyUser} onChange={fetchUser} />
-        </div>
             <div className="absolute top-16 left-4 z-20">
               {/* {profile && ( */}
                 <Avatar url={profile?.avatar || 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg'} size={'lg'} editable={isMyUser} onChange={fetchUser} />
@@ -207,7 +207,7 @@ function saveProfile() {
                   )}
                   {!editMode && (
                     <div className="text-gray-500 leading-4">
-                      {profile?.place || 'No Place'}
+                      {profile?.places || 'No Place'}
                     </div>
                   )}
                   {editMode && (
@@ -215,20 +215,22 @@ function saveProfile() {
                       <input type="text"
                              className="border py-2 px-3 rounded-md mt-1"
                              placeholder={'Your location'}
-                             onChange={ev => setPlace(ev.target.value)}
-                             value={place}/>
+                             onChange={ev => setPlaces(ev.target.value)}
+                             value={places}/>
                     </div>
                   )}
                 </div>
 
 <div className="grow">
                   <div className="text-right gap-2 ">
-                    {isMyUser && !editMode && (
+                    {
+                    // isMyUser && 
+                    !editMode && (
                       <button
                         onClick={() => {
                           setEditMode(true);
-                          setName(profile.name);
-                          setPlace(profile.place);
+                          setName(profile?.name);
+                          setPlaces(profile?.place);
                         }}
                         className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -237,12 +239,16 @@ function saveProfile() {
                         Edit profile
                       </button>
                     )}
-                    {isMyUser && editMode && (
+                    {
+                    // isMyUser && 
+                    editMode && (
                       <button onClick={saveProfile} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         Save profile
                       </button>
                      )}
-                    {isMyUser && editMode && (
+                    {
+                    // isMyUser && 
+                    editMode && (
                       <button onClick={() => setEditMode(false)} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         Cancel
                       </button>
