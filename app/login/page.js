@@ -6,8 +6,8 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function LoginPage() {
-    // const supabase = useSupabaseClient();
-    const supabase = createClientComponentClient();
+    const supabase = useSupabaseClient();
+    // const supabase = createClientComponentClient();
     async function loginWithGoogle() {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
