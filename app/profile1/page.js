@@ -3,7 +3,7 @@
 import Layout from "@/components/Layout";
 import Card from "@/components/Card";
 import Avatar from "@/components/Avatar";
-import {useRouter} from "next/navigation";
+import {useParams, useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
 import Cover from "@/components/Cover";
@@ -14,8 +14,10 @@ export default function ProfilePage() {
   const [name,setName] = useState('');
   const [places,setPlaces] = useState('');
   const router = useRouter();
+  const params = useParams();
+  // console.log(params);
   const session = useSession();
-  const userId = router?.query?.id;
+  const userId = params?.id;
 
   const supabase = useSupabaseClient();
 
@@ -63,12 +65,12 @@ function saveProfile() {
     <Layout>
       <Card noPadding={true}>
         
-      <div className="relative overflow-hidden rounded-md">
-        <Cover url={profile?.cover || 'https://media.istockphoto.com/id/1418792572/photo/oia-traditional-greek-village.webp?b=1&s=170667a&w=0&k=20&c=M33gNXnch92lVnlty031IuCkFOBuyrYPxxxdrqTjd2k='} editable={isMyUser} onChange={fetchUser} />
-            <div className="absolute top-16 left-4 z-20">
-              {/* {profile && ( */}
+      <div className="relative overflow-hidden rounded-md pb-3">
+        <Cover url={profile?.cover} editable={isMyUser} onChange={fetchUser} />
+            <div className="absolute top-16 left-7 z-20">
+              {profile && (
                 <Avatar url={profile?.avatar || 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg'} size={'lg'} editable={isMyUser} onChange={fetchUser} />
-              {/* )} */}
+              )}
             </div>
 
         <div className="p-4 pt-2 md::pt-4 pb-5">
@@ -86,12 +88,12 @@ function saveProfile() {
                   )}
                   {!editMode && (
                     <h1 className="text-3xl font-bold">
-                      {profile?.name || 'No Name'}
+                      {profile?.name}
                     </h1>
                   )}
                   {!editMode && (
                     <div className="text-gray-500 leading-4">
-                      {profile?.places || 'No Place'}
+                      {profile?.places}
                     </div>
                   )}
                   {editMode && (
@@ -108,7 +110,7 @@ function saveProfile() {
 <div className="grow">
                   <div className="text-right gap-2 ">
                     {
-                    // isMyUser && 
+                    isMyUser && 
                     !editMode && (
                       <button
                         onClick={() => {
@@ -124,14 +126,14 @@ function saveProfile() {
                       </button>
                     )}
                     {
-                    // isMyUser && 
+                    isMyUser && 
                     editMode && (
                       <button onClick={saveProfile} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         Save profile
                       </button>
                      )}
                     {
-                    // isMyUser && 
+                    isMyUser && 
                     editMode && (
                       <button onClick={() => setEditMode(false)} className="inline-flex mx-1 gap-1 bg-white rounded-md shadow-sm shadow-gray-500 py-1 px-2">
                         Cancel

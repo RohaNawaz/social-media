@@ -1,3 +1,5 @@
+'use client';
+
 import Friendpage from "@/app/friends/page";
 import ProfilePage from "../page";
 

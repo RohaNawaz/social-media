@@ -13,6 +13,9 @@ export default function Home() {
   const supabase = useSupabaseClient();
    const [posts, setPosts] = useState([]);
    const session = useSession();
+   if (!session) {
+    return <LoginPage />
+   }
    const [profile,setProfile] = useState(null);
 
   useEffect(() => {
@@ -22,7 +25,7 @@ export default function Home() {
    }
    supabase.from('profiles')
     .select()
-    .eq('id', session.user.id)
+    .eq('id', session?.user?.id)
     .then(result => {
         console.log(result)
         if(result.data.length) {
@@ -37,14 +40,9 @@ export default function Home() {
   .is('parent', null)
   .order('created_at', {ascending: false})
   .then(result => {
-    console.log('posts', result)
     setPosts(result.data);
   })  
  }
-   
-   if (!session) {
-    return <LoginPage />
-   }
 
   return (
     <Layout>
