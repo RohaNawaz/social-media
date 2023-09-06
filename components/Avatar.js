@@ -4,6 +4,7 @@ import {uploadUserProfileImage} from "../helpers/users";
 import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
 import {useState} from "react";
 import PreLoader from "./PreLoader";
+import Image from "next/image";
 
 
 export default function Avatar({size, url, editable, onChange}) {
@@ -29,7 +30,7 @@ export default function Avatar({size, url, editable, onChange}) {
     return (
         <div className={`${width} relative`}>
             <div className="overflow-hidden rounded-full">
-            <img src={url} alt="" className="w-full"></img>
+            <Image src={url} alt="" className="w-full"></Image>
             </div>
             {isUploading && (
         <div className="absolute inset-0 flex items-center bg-white bg-opacity-50 rounded-full">
