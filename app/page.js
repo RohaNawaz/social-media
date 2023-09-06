@@ -70,10 +70,10 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function Home() {
   const supabase = createClientComponentClient();
-  // const session = supabase.auth.getSession();
+  const session = useSession();
   const [posts,setPosts] = useState([]);
   const [profile,setProfile] = useState(null);
-  const {data: session, error} = supabase.auth.getSession();
+  // const {data: session, error} = supabase.auth.getSession();
   const {data: user} = supabase.auth.getUser();
 
   useEffect(() => {

@@ -3,7 +3,7 @@
 import Card from "@/components/Card";
 import Layout from "@/components/Layout";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+// import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function LoginPage() {
     const supabase = createClientComponentClient();
@@ -11,8 +11,7 @@ export default function LoginPage() {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          emailRedirectTo: 
-          `${location.origin}/api/auth/callback`,
+          emailRedirectTo: `${location.origin}/api/auth/callback`,
         },
       });
   }
