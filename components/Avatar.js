@@ -30,7 +30,7 @@ export default function Avatar({size, url, editable, onChange}) {
     return (
         <div className={`${width} relative`}>
             <div className="overflow-hidden rounded-full">
-            <Image src={url} alt="" className="w-full"></Image>
+            <img src={url} width="" alt="" className="w-full"></img>
             </div>
             {isUploading && (
         <div className="absolute inset-0 flex items-center bg-white bg-opacity-50 rounded-full">

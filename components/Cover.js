@@ -23,7 +23,7 @@ export default function Cover({url, editable, onChange}) {
     return (
         <div className="h-32 overflow-hidden flex justify-center items-center w-auto">
             <div>
-            <Image src={url} alt=""></Image>
+            <img src={url} width="" alt=""></img>
             </div>
             {isUploading && (
               <div className="absolute inset-0 bg-white bg-opacity-80 flex items-center z-10">
