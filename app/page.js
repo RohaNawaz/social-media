@@ -118,7 +118,9 @@ export default function Home() {
       <UserContext.Provider value={{profile}}>
         <PostFormCard onPost={fetchPosts} />
         {posts?.length > 0 && posts.map(post => (
-          <PostCard key={post.id} {...post} />
+          <div key={post.id}> 
+          <PostCard {...post} />
+            </div>
         ))}
       </UserContext.Provider>
     </Layout>
