@@ -60,7 +60,7 @@ export default function PostFormCard({onPost}) {
                 <div>
                 <Avatar url={profile?.avatar}/>
                 </div>
-       {profile && (
+       {session && (
                 <textarea 
                 value={content} 
                 onChange={e => setContent(e.target.value)} 
