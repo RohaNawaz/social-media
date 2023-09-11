@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 // import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function LoginPage() {
+  const dynamic = "force-dynamic";
     const supabase = createClientComponentClient();
 
     async function loginWithGoogle() {
