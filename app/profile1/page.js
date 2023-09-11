@@ -26,7 +26,7 @@ export default function ProfilePage() {
       return;
     }
     fetchUser();
-  }, [userId]);
+  }, [userId, fetchUser]);
 
   function fetchUser() {
     supabase.from('profiles')
