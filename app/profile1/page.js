@@ -9,6 +9,7 @@ import {useSession, useSupabaseClient} from "@supabase/auth-helpers-react";
 import Cover from "@/components/Cover";
 
 export default function ProfilePage() {
+  const dynamic = "force-dynamic"
   const [profile,setProfile] = useState(null);
   const [editMode,setEditMode] = useState(false);
   const [name,setName] = useState('');

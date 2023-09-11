@@ -12,6 +12,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 // import { useParams } from 'next/navigation'
 
 export default function Home() {
+  const dynamic = "force-dynamic"
   const supabase = createClientComponentClient();
    const [posts, setPosts] = useState([]);
   //  const {data: session }= supabase.auth.getSession();

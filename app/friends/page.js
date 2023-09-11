@@ -5,6 +5,7 @@ import FriendsInfo from "@/components/FriendsInfo";
 import Layout from "@/components/Layout";
 
 export default function Friendpage() {
+  const dynamic = "force-dynamic"
     return (
         <Layout>
            <Card>

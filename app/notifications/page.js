@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 
 export default function page() {
+  const dynamic = "force-dynamic"
     return(
         <Layout>
       <h1 className="text-6xl mb-4 text-gray-300">Notifications</h1>
