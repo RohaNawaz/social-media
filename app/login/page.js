@@ -13,9 +13,9 @@ export default function LoginPage() {
     async function loginWithGoogle() {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
-        // options: {
-        //   emailRedirectTo: `${location.origin}/api/auth/callback`,
-        // },
+        options: {
+          emailRedirectTo: `${location.origin}/api/auth/callback`,
+        },
       });
    }
     return (
