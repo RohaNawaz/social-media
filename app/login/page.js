@@ -3,7 +3,7 @@
 import Card from "@/components/Card";
 import Layout from "@/components/Layout";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 // import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function LoginPage() {
