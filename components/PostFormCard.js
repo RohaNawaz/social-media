@@ -159,7 +159,7 @@ export default function PostFormCard({onPost}) {
       }
     });
   }
-
+{profile && (
   async function addPhotos(ev) {
     const files = ev.target.files;
     if (files.length > 0) {
@@ -180,6 +180,7 @@ export default function PostFormCard({onPost}) {
       setIsUploading(false);
     }
   }
+)}
 
   return (
 
